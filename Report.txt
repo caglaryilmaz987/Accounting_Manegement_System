@@ -1,0 +1,119 @@
+
+Accounting Management System Report
+
+INTRODUCTION
+
+Start: 
+This class performs the necessary operations before the application starts.
+Here, I call my Hasher class and hash the passwords received from outside (args) using the bcrypt dependency. Then, I apply the theme previously selected by the user from my ThemeManager and ensure that the user screen starts with a slight delay after all these.
+
+Starting screen:
+This panel shows that the application has started.
+Here, I display a message and direct the user to the login screen on click.
+
+Login screen: 
+This panel allows login.
+First, I assign static variables for username and type to use in other classes. Then, I add a background image by calling the ImagePanel class and fill my static variables. After that, I load the JDBC driver and establish a connection. I find the matching user in SQL and verify the password. According to whether the user is admin or user, I redirect to different frames.
+
+MAIN PANELS
+
+Admin panel: 
+In this panel, I used a tabbed pane to create a Welcome and Converter panel. One acts as an entry screen, and the other is a real-time currency converter made with an API. There is also a User Management tab with menus and menu items.
+
+User panel: 
+This panel is almost the same as the admin panel except for the User Management menu.
+
+SUB-PANELS
+
+Add Transaction Panel: 
+This panel is for adding transactions.
+In the constructor, I center the screen, then call my ImagePanel class to add an image to the panel. I then collect the required data for a transaction, connect to the database, prepare the transaction, and add it with an insert query. After adding the data, I execute the query, show a success message, and ask if the user wants to repeat. I also created a copy-paste popup for the textarea and added an exit button.
+
+Update Delete Transaction Panel: 
+This panel is for updating and deleting transactions.
+First, I create a DefaultTableModel and fill it in initComponent. Outside, I create a TransactionManager object and initialize it in the constructor. Then, I add an image. For the update button, I collect the necessary info, create a transaction object, run the update method from TransactionManager, refresh the table, and show a message. For the delete button, I show a confirmation popup, and if confirmed, run the delete method from TransactionManager, refresh the table, and add a copy-paste popup for the textarea. An exit button is also added.
+
+View Transaction Panel: 
+This panel is for viewing transactions.
+I declare the TransactionManager outside and create a constructor. To handle errors, I define a DefaultTableModel and fill the table using the manager according to a default list. An exit button is also present.
+
+Add User Panel: 
+This panel is for adding users.
+Here, I place a label describing the rules, collect necessary info, and if any field is empty, show a warning. Otherwise, I add the user using the addUser function from UserManager, reset everything, call the Hasher to hash the password, and complete the process. An exit button is also added.
+
+Update Delete User Panel: 
+This panel is for updating and deleting users.
+I define a UserManager object and use its refreshTable method in initComponent to fill the table at start. The method defines and fills a DefaultTableModel completely. For the update button, I first get the id, then the necessary info, update via UserManager, and show a success message. For delete, I get the id, show a confirmation message, and if confirmed, run the delete method with the id, then update the table. An exit button is also added.
+
+View Users Panel: 
+This panel is for displaying users.
+I declare UserManager again, define a list, get all users via the getAllUsers method, create a DefaultListModel, add each user to it, set the model, and show an info message.
+
+Settings Panel: 
+This panel allows the user to make certain settings.
+First, I mark checkboxes according to the saved theme. Then, I add an image with my ImagePanel class using graphics. Using the FlatLaf library, I update all components and the interface according to the checkboxes. Buttons for file backup and restore allow backing up and restoring the database. The user is asked for the file path and SQL password. Using ProcessBuilder, I prepare a dump path and backup the database, exporting the data. For restore, I request a file path and password, run the process, update the database with the data, and complete the operation.
+
+Graph Panel: 
+This panel is for generating reports and creating a bar chart.
+I used the FreeChart library. Based on the user’s name and role, I prepared a dataset with month and year, added it to the dataset, created a chart template with FreeChart, and transferred the data to the chart.
+
+Secondly, the export file button collects the username and all transactions via an SQL query. Using a StringBuilder, I organize the operations, continue until all transactions are included, and write them to a file on the desktop and project directory.
+
+CLASSES
+
+Manager Class: 
+This is a generic abstract class. I wrote basic methods and parameters for transactions, including loadData(DefaultTableModel model), delete(int id), and update(T obj).
+
+Transaction Class: 
+I created an object suitable for my database table to use in database insert operations.
+
+Transaction Manager Class: 
+In this class, I override and use the manager methods to handle all operations.
+
+LoadData: 
+Takes a DefaultListModel as a parameter, retrieves information of the logged-in user, prepares a query based on the user and role, fills my model by adding rows.
+
+Delete: 
+Takes an id parameter, prepares a delete query for the id, and deletes the record.
+
+Update: 
+Takes a transaction object, prepares an SQL query based on the transaction’s properties, and sets accordingly.
+
+User Class: 
+I created a user object suitable for my user table to use in database operations.
+
+User Management Class: 
+I wrote all methods for operations to be done on users.
+
+GetAllUsers: 
+Retrieves all users as a list. I create a users list, fill it with query results, and return it.
+
+AddUser: 
+Takes user parameters, checks them against regex for validity, shows a message if invalid. Then checks if the user already exists via SQL query. If not, adds the user with an insert query.
+
+UpdateUser: 
+Takes an id parameter, updates the user if matched.
+
+DeleteUser: 
+Takes only an id, deletes the user by id.
+
+Hasher: 
+I set up the JDBC driver, connected to the database, wrote a query with username and password, check if passwords are hashed, then hash them with bcrypt library and update accordingly.
+
+ImagePanel: 
+I wrote a method to facilitate operations using graphics and create an icon.
+
+PaintComponent: 
+I take a graphics object, call its superclass, then draw.
+
+Theme Manager: 
+I created a class to handle theme settings and wrote a method.
+
+ApplyTheme: 
+Changes the theme with the FlatLaf library according to the selected option (black or white), updates components, and resizes the window.
+
+Converter: 
+My goal here is to provide real-time currency conversion.
+
+GetExchangeRate: 
+I wrote an API and URL, established a connection, read data line by line with BufferedReader, collected all with StringBuilder, closed reading, printed the response, converted the data into an object with a JSON library, and verified the operation’s correctness.
