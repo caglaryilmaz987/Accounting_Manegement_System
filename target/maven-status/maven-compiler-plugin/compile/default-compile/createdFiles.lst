@@ -1,7 +1,6 @@
 com\mycompany\accaunting_manegment_system\User_Screen$25.class
 com\mycompany\accaunting_manegment_system\Login_Screen$7.class
 com\mycompany\accaunting_manegment_system\Admin_Screen$16.class
-com\mycompany\accaunting_manegment_system\Admin_Screen$26.class
 com\mycompany\accaunting_manegment_system\User_Screen$15.class
 Classes\ImagePanel.class
 com\mycompany\accaunting_manegment_system\Update_DeleteTransactions$10.class
@@ -84,7 +83,6 @@ com\mycompany\accaunting_manegment_system\User_Screen$19.class
 com\mycompany\accaunting_manegment_system\Transaction_Maneger.class
 com\mycompany\accaunting_manegment_system\User_Screen.class
 com\mycompany\accaunting_manegment_system\Update_DeleteTransactions$7.class
-com\mycompany\accaunting_manegment_system\Admin_Screen$25.class
 com\mycompany\accaunting_manegment_system\Update_DeleteTransactions.class
 com\mycompany\accaunting_manegment_system\User_Screen$2.class
 com\mycompany\accaunting_manegment_system\Admin_Screen$15.class
@@ -108,7 +106,6 @@ com\mycompany\accaunting_manegment_system\Login_Screen$6.class
 com\mycompany\accaunting_manegment_system\Update_DeleteUsers$2.class
 com\mycompany\accaunting_manegment_system\User_Screen$10.class
 com\mycompany\accaunting_manegment_system\Login_Screen$2.class
-com\mycompany\accaunting_manegment_system\Admin_Screen$24.class
 com\mycompany\accaunting_manegment_system\User_Screen$17.class
 com\mycompany\accaunting_manegment_system\Login_Screen$9.class
 com\mycompany\accaunting_manegment_system\ViewTransactionPanel$3.class
